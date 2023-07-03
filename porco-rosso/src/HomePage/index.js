@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const BackgroundDiv = styled.div`
@@ -67,10 +68,11 @@ export const TextoAzul = styled.p`
 export const TiraAzul = styled.div`
   background: #91bdff;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  height: 84px;
+  height: 64px;
   margin: 0px 0px 50px;
+  gap: 50px;
 `;
 
 export const TextoBranco = styled.p`
@@ -110,4 +112,8 @@ export const DivCitacao = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+`;
+
+export const DivNavLink = styled(NavLink)`
+  text-decoration: none;
 `;

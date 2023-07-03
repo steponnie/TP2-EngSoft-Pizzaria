@@ -4,6 +4,7 @@ import {
   DivCitacao,
   DivLogin,
   DivMeioTela,
+  DivNavLink,
   DivPorcoRossoImg,
   DivSuperior,
   DivTitulo,
@@ -21,12 +22,23 @@ const HomePage = () => {
     <BackgroundDiv>
       <DivSuperior>
         <DivTitulo>
+          <DivNavLink
+            to="/">
           <Titulo>{"Porco Rosso"}</Titulo>
+          </DivNavLink>
           <SubTitulo>{"Pizzaria"}</SubTitulo>
         </DivTitulo>
         <DivLogin>
-          <TextoAzul>{"Entrar"}</TextoAzul>
-          <TextoAzul>{"Cadastro"}</TextoAzul>
+          <DivNavLink
+            to="/Login/Login"
+            >
+            <TextoAzul>{"Entrar"}</TextoAzul>
+          </DivNavLink>
+          <DivNavLink
+            to="/Cadastrar/Cadastrar"
+            >
+            <TextoAzul>{"Cadastrar"}</TextoAzul>
+          </DivNavLink>
         </DivLogin>
       </DivSuperior>
       <TiraAzul>
