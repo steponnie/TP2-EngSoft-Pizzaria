@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import {
   BackgroundDiv,
   Botao,
@@ -20,6 +20,12 @@ import {
 } from "./index.js";
 
 const Login = () => {
+  const [usuario, setUsuario] = useState({ email: "", senha: "" });
+
+  useEffect(() => {
+    console.log(usuario);
+  }, [usuario]);
+
   return (
     <BackgroundDiv>
       <DivSuperior>
@@ -32,7 +38,9 @@ const Login = () => {
       </DivSuperior>
       <TiraAzul>
         <TextoBranco>{"menu"}</TextoBranco>
-        <TextoBranco>{"sobre nós"}</TextoBranco>
+        <DivNavLink to="/SobreNos/SobreNos">
+          <TextoBranco>{"sobre nós"}</TextoBranco>
+        </DivNavLink>
       </TiraAzul>
       <DivMeioTela>
         <DivMeioAzul>
@@ -41,15 +49,25 @@ const Login = () => {
         </DivMeioAzul>
         <DivMeioRosa>
           <TextoRosaBranco>{"Email"}</TextoRosaBranco>
-          <Caixa placeholder="Insira seu email aqui..." />
+          <Caixa
+            placeholder="Insira seu email aqui..."
+            value={usuario.email}
+            onChange={(e) => {
+              setUsuario({ ...usuario, email: e.target.value });
+            }}
+          />
           <TextoRosaBranco>{"Senha"}</TextoRosaBranco>
-          <Caixa placeholder="Insira sua senha..." type="password" />
+          <Caixa
+            placeholder="Insira sua senha..."
+            type="password"
+            value={usuario.senha}
+            onChange={(e) => {
+              setUsuario({ ...usuario, senha: e.target.value });
+            }}
+          />
           <Botao variant="contained">{"Entrar"}</Botao>
-          <DivNavLink
-            to="/Cadastrar/Cadastrar"> 
-            <TextoAzul> 
-              {"Criar uma conta"}
-            </TextoAzul>
+          <DivNavLink to="/Cadastrar/Cadastrar">
+            <TextoAzul>{"Criar uma conta"}</TextoAzul>
           </DivNavLink>
         </DivMeioRosa>
       </DivMeioTela>

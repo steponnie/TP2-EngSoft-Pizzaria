@@ -158,5 +158,9 @@ export const Botao = styled(Button)`
     font-style: normal;
     font-weight: bold;
     line-height: normal;
+  
+    :hover {
+      background-color: #75adff;
+    }
   }
 `;

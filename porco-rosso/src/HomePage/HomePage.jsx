@@ -43,7 +43,12 @@ const HomePage = () => {
       </DivSuperior>
       <TiraAzul>
         <TextoBranco>{"menu"}</TextoBranco>
-        <TextoBranco>{"sobre nós"}</TextoBranco>
+        <DivNavLink
+          to="/SobreNos/SobreNos">
+          <TextoBranco>
+            {"sobre nós"}
+          </TextoBranco>
+        </DivNavLink>
       </TiraAzul>
       <DivMeioTela>
         <DivPorcoRossoImg>
