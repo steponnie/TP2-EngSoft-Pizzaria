@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({
+  const [user, setUserInfo] = useState({
     email: "",
     senha: "",
     carrinho: [{ nome: "Calabresa", qt: 1 }, { nome: "Portuguesa", qt: 1 }],
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUserInfo }}>
       {children}
     </AuthContext.Provider>
   );

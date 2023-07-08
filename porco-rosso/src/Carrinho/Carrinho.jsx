@@ -17,6 +17,7 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
+import { cadastrarPedido } from "../FirebaseUtils/Funcoes.js";
 
 export const Carrinho = () => {
   const userCredenciais = useContext(AuthContext);
@@ -30,7 +31,7 @@ export const Carrinho = () => {
     let novoCarrinho = carrinho.slice();
     novoCarrinho[i] = novoItem;
     setCarrinho(novoCarrinho);
-    userCredenciais.setUser({
+    userCredenciais.setUserInfo({
       ...userCredenciais.user,
       carrinho: novoCarrinho,
     });
@@ -45,13 +46,24 @@ export const Carrinho = () => {
       delete novoCarrinho[i];
     }
     setCarrinho(novoCarrinho);
-    userCredenciais.setUser({
+    userCredenciais.setUserInfo({
       ...userCredenciais.user,
       carrinho: novoCarrinho,
     });
   }
 
-  console.log(carrinho);
+  function finalizarPedido() {
+    if (carrinho.length > 0) {
+      const item = {
+        pedido: carrinho,
+        email: userCredenciais.user.email,
+        senha: userCredenciais.user.senha,
+      };
+      cadastrarPedido(item);
+      setCarrinho([]);
+      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: carrinho})
+    }
+  }
 
   return (
     <BackgroundDiv>
@@ -75,9 +87,7 @@ export const Carrinho = () => {
         <>
           <DivMeioTela>
             <DivTitulo>
-              <SubTitulo>
-                {"Carrinho: "}
-              </SubTitulo>
+              <SubTitulo>{"Carrinho: "}</SubTitulo>
             </DivTitulo>
             {carrinho.map((item, i) => {
               return (
@@ -95,7 +105,15 @@ export const Carrinho = () => {
                 </ItemCarrinho>
               );
             })}
-            <Botao variant="contained">{"Finalizar pedido"}</Botao>
+
+            <Botao
+              variant="contained"
+              onClick={() => {
+                finalizarPedido();
+              }}
+            >
+              {"Finalizar pedido"}
+            </Botao>
           </DivMeioTela>
         </>
       ) : (

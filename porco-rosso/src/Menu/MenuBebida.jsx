@@ -19,17 +19,18 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
-import { consultarPizza } from "../FirebaseUtils/Funcoes.js";
+import { consultarBebida } from "../FirebaseUtils/Funcoes.js";
 
-let pizza = [];
-consultarPizza().then((res) => {
-  pizza = res;
+let bebida = [];
+consultarBebida().then((res) => {
+  bebida = res;
 });
 
-export const Menu = () => {
+export const MenuBebida = () => {
   const userCredenciais = useContext(AuthContext);
   const userLogado = userCredenciais.user.email ? true : false;
   const nav = useNavigate();
+
 
   return (
     <BackgroundDiv>
@@ -67,13 +68,13 @@ export const Menu = () => {
       </TiraAzul>
       <DivMenus>
         <DivMenuEscolha
-          ativo={true}
+          ativo={false}
           onClick={() => {nav('/Menu/Menu')}}
         >
           {"Pizza"}
         </DivMenuEscolha>
         <DivMenuEscolha
-          ativo={false}
+          ativo={true}
           onClick={() => {nav('/Menu/MenuBebida')}}
         >
           {"Bebidas"}
@@ -86,13 +87,10 @@ export const Menu = () => {
         </DivMenuEscolha>
       </DivMenus>
       <DivOpcoes>
-        <OpcaoMenu>
-          <OpcaoTitulo>{"Montar pizza"} </OpcaoTitulo>
-        </OpcaoMenu>
-        {pizza.map((item) => {
+        {bebida.map((item) => {
           return (
             <OpcaoMenu key={item}>
-              <OpcaoTitulo>{item.sabor}</OpcaoTitulo>
+              <OpcaoTitulo>{item.bebida}</OpcaoTitulo>
               <OpcaoTitulo>{"RS " + item.preco}</OpcaoTitulo>
             </OpcaoMenu>
           );

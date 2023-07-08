@@ -4,6 +4,8 @@ import { Login } from "./Login/Login";
 import { Cadastrar } from "./Cadastrar/Cadastrar";
 import { SobreNos } from "./SobreNos/SobreNos";
 import { Menu } from "./Menu/Menu";
+import { MenuBebida } from "./Menu/MenuBebida";
+import { MenuCombo } from "./Menu/MenuCombo";
 import { Carrinho } from "./Carrinho/Carrinho";
 import { AuthProvider } from "./Context/Auth";
 
@@ -17,6 +19,8 @@ const App = () => {
           <Route exact path="/Cadastrar/Cadastrar" element={<Cadastrar />} />
           <Route exact path="/SobreNos/SobreNos" element={<SobreNos />} />
           <Route exact path="/Menu/Menu" element={<Menu />} />
+          <Route exact path="/Menu/MenuBebida" element={<MenuBebida />} />
+          <Route exact path="/Menu/MenuCombo" element={<MenuCombo />} />
           <Route exact path="/Carrinho/Carrinho" element={<Carrinho />} />
         </Routes>
       </BrowserRouter>

@@ -17,14 +17,12 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
-import { cadastrarPessoa, consultarBairros, consultarPessoa } from "../FirebaseUtils/Funcoes.js";
+import { cadastrarPessoa, consultarBairros } from "../FirebaseUtils/Funcoes.js";
 
-let bairros = [{ id: 1, nome: "Anchieta" }]
-consultarBairros().then(res => {bairros = res})
-
-let pessoas = [{ id: 1, nome: "Anchieta" }]
-consultarPessoa().then(res => {pessoas = res})
-console.log(pessoas)
+let bairros = [{ id: 1, nome: "Anchieta" }];
+consultarBairros().then((res) => {
+  bairros = res;
+});
 
 export const Cadastrar = () => {
   const [usuario, setUsuario] = useState({
@@ -40,8 +38,6 @@ export const Cadastrar = () => {
     cep: "",
     complemento: "",
   });
-  
-  
 
   function fazerCadastro() {
     if (
@@ -53,22 +49,22 @@ export const Cadastrar = () => {
       usuario.senha !== "" &&
       usuario.rua !== "" &&
       usuario.bairro !== "" &&
-      usuario.numero !== "" &&
-      usuario.cep !== ""
+      usuario.numero !== ""
     ) {
       cadastrarPessoa(usuario);
-      setUsuario({nome: "",
-      cpf: "",
-      dataNascimento: "",
-      telefone: "",
-      email: "",
-      senha: "",
-      rua: "",
-      bairro: "",
-      numero: "",
-      cep: "",
-      complemento: ""});
-      console.log("Cadastro feito");
+      setUsuario({
+        nome: "",
+        cpf: "",
+        dataNascimento: "",
+        telefone: "",
+        email: "",
+        senha: "",
+        rua: "",
+        bairro: "",
+        numero: "",
+        cep: "",
+        complemento: "",
+      });
     }
   }
 

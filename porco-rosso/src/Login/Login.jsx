@@ -20,13 +20,23 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
+import { consultarPessoa } from "../FirebaseUtils/Funcoes.js";
 
 export const Login = () => {
+  const [usuarios, setUsuario] = useState([])
   const userCredenciais = useContext(AuthContext);
   const [user, setUser] = useState(userCredenciais.user);
 
   function fazerLogin() {
-    userCredenciais.setUser(user);
+    consultarPessoa().then(res => setUsuario(res));
+    for (let index = 0; index < usuarios.length; index++) {
+      const email = usuarios[index]['email'];
+      const senha = usuarios[index]['senha'];
+      if (email === user.email && senha === user.senha) {
+        userCredenciais.setUserInfo({...user, email: email, senha: senha});
+        
+      }
+    }
   }
 
   if(userCredenciais.user.email) {

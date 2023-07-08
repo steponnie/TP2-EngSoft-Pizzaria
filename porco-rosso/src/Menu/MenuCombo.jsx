@@ -26,7 +26,7 @@ consultarPizza().then((res) => {
   pizza = res;
 });
 
-export const Menu = () => {
+export const MenuCombo = () => {
   const userCredenciais = useContext(AuthContext);
   const userLogado = userCredenciais.user.email ? true : false;
   const nav = useNavigate();
@@ -67,7 +67,7 @@ export const Menu = () => {
       </TiraAzul>
       <DivMenus>
         <DivMenuEscolha
-          ativo={true}
+          ativo={false}
           onClick={() => {nav('/Menu/Menu')}}
         >
           {"Pizza"}
@@ -79,7 +79,7 @@ export const Menu = () => {
           {"Bebidas"}
         </DivMenuEscolha>
         <DivMenuEscolha
-          ativo={false}
+          ativo={true}
           onClick={() => {nav('/Menu/MenuCombo')}}
         >
           {"Combo"}
