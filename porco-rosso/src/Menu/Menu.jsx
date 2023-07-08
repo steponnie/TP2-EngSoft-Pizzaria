@@ -33,9 +33,8 @@ export const Menu = () => {
 
   function adicionarNoCarrinho(item) {
     if(userCredenciais.user.email) {
-      let novoItem = {nome: item.sabor, qt: 1}
+      let novoItem = {nome: item.sabor, qt: 1, preco: item.preco}
       userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]})
-      console.log(userCredenciais.user)
     }
   }
 
@@ -94,9 +93,11 @@ export const Menu = () => {
         </DivMenuEscolha>
       </DivMenus>
       <DivOpcoes>
+        <DivNavLink to="/Menu/MenuMontarPizza">
         <OpcaoMenu>
           <OpcaoTitulo>{"Montar pizza"} </OpcaoTitulo>
         </OpcaoMenu>
+        </DivNavLink>
         {pizza.map((item) => {
           return (
             <OpcaoMenu key={item.sabor} onClick={() => {adicionarNoCarrinho(item)}}>

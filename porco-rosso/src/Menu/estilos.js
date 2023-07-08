@@ -168,10 +168,14 @@ export const OpcaoMenu = styled.div`
   height: 177px;
   background: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  :hover {
+    background-color: #f0b47d;
+    color: #fff;
+  }
 `;
 
 export const OpcaoTitulo = styled.h2`
-  color: #f8d0ab;
   font-size: 32px;
   font-family: Titan One;
   font-style: normal;
@@ -180,7 +184,6 @@ export const OpcaoTitulo = styled.h2`
 `;
 
 export const OpcaoTitulo2 = styled.h2`
-  color: #f8d0ab;
   font-size: 24px;
   font-family: Titan One;
   font-style: normal;

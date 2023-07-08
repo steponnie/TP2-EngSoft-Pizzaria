@@ -18,10 +18,12 @@ import {
   Titulo,
 } from "./estilos.js";
 import { cadastrarPedido } from "../FirebaseUtils/Funcoes.js";
+import { useEffect } from "react";
 
 export const Carrinho = () => {
   const userCredenciais = useContext(AuthContext);
   const [carrinho, setCarrinho] = useState(userCredenciais.user.carrinho);
+  const [precoTotal, setPreco] = useState(0)
 
   const userLogado = userCredenciais.user.email ? true : false;
 
@@ -58,12 +60,24 @@ export const Carrinho = () => {
         pedido: carrinho,
         email: userCredenciais.user.email,
         senha: userCredenciais.user.senha,
+        preco: precoTotal,
       };
       cadastrarPedido(item);
       setCarrinho([]);
-      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: carrinho})
+      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: []})
     }
   }
+
+  useEffect(() => {
+    
+    let preco = 0;
+    carrinho.forEach((item) => {
+        preco += item.preco * item.qt;
+      
+    })
+    setPreco(preco)
+  }, [carrinho]);
+    
 
   return (
     <BackgroundDiv>
@@ -86,9 +100,7 @@ export const Carrinho = () => {
       {userLogado ? (
         <>
           <DivMeioTela>
-            <DivTitulo>
-              <SubTitulo>{"Carrinho: "}</SubTitulo>
-            </DivTitulo>
+            <SubTitulo>{"Carrinho: "}</SubTitulo>
             {carrinho.map((item, i) => {
               return (
                 <ItemCarrinho key={i} id={item}>
@@ -105,7 +117,7 @@ export const Carrinho = () => {
                 </ItemCarrinho>
               );
             })}
-
+            <SubTitulo>{"Preço: R$ " + precoTotal}</SubTitulo>
             <Botao
               variant="contained"
               onClick={() => {

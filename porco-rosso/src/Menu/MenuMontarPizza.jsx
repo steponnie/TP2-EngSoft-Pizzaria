@@ -19,25 +19,33 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
-import { consultarBebida } from "../FirebaseUtils/Funcoes.js";
+import { consultarPizza} from "../FirebaseUtils/Funcoes.js";
 
-let bebida = [];
-consultarBebida().then((res) => {
-  bebida = res;
+let pizza = [];
+consultarPizza().then((res) => {
+  pizza = res;
 });
 
-export const MenuBebida = () => {
+export const MenuMontarPizza = () => {
   const userCredenciais = useContext(AuthContext);
   const userLogado = userCredenciais.user.email ? true : false;
   const nav = useNavigate();
+  let saboresPizza = []
 
-  function adicionarNoCarrinho(item) {
-    if(userCredenciais.user.email) {
-      let novoItem = {nome: item.bebida, qt: 1, preco: item.preco}
-      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]})
+  function montarPizza(item) {
+    saboresPizza.push(item);
+    if (saboresPizza.length === 2) {
+      adicionarNoCarrinho(saboresPizza)
     }
   }
 
+  function adicionarNoCarrinho(item) {
+    if(userCredenciais.user.email) {
+      let novoItem = {nome: item[0].sabor + "+" + item[1].sabor, qt: 1, preco: (item[0].preco + item[1].preco)/2};
+      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]});
+      nav('/Carrinho/Carrinho');
+    }
+  }
 
   return (
     <BackgroundDiv>
@@ -81,7 +89,7 @@ export const MenuBebida = () => {
           {"Pizza"}
         </DivMenuEscolha>
         <DivMenuEscolha
-          ativo={true}
+          ativo={false}
           onClick={() => {nav('/Menu/MenuBebida')}}
         >
           {"Bebidas"}
@@ -94,10 +102,10 @@ export const MenuBebida = () => {
         </DivMenuEscolha>
       </DivMenus>
       <DivOpcoes>
-        {bebida.map((item) => {
+        {pizza.map((item) => {
           return (
-            <OpcaoMenu key={item.bebida} onClick={() => {adicionarNoCarrinho(item)}}>
-              <OpcaoTitulo>{item.bebida}</OpcaoTitulo>
+            <OpcaoMenu key={item.sabor} onClick={() => {montarPizza(item)}}>
+              <OpcaoTitulo>{item.sabor}</OpcaoTitulo>
               <OpcaoTitulo>{"RS " + item.preco}</OpcaoTitulo>
             </OpcaoMenu>
           );

@@ -6,6 +6,7 @@ import { SobreNos } from "./SobreNos/SobreNos";
 import { Menu } from "./Menu/Menu";
 import { MenuBebida } from "./Menu/MenuBebida";
 import { MenuCombo } from "./Menu/MenuCombo";
+import { MenuMontarPizza } from "./Menu/MenuMontarPizza";
 import { Carrinho } from "./Carrinho/Carrinho";
 import { AuthProvider } from "./Context/Auth";
 
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path="/Menu/Menu" element={<Menu />} />
           <Route exact path="/Menu/MenuBebida" element={<MenuBebida />} />
           <Route exact path="/Menu/MenuCombo" element={<MenuCombo />} />
+          <Route exact path="/Menu/MenuMontarPizza" element={<MenuMontarPizza />} />
           <Route exact path="/Carrinho/Carrinho" element={<Carrinho />} />
         </Routes>
       </BrowserRouter>

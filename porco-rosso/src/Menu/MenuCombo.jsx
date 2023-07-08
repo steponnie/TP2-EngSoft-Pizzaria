@@ -25,7 +25,6 @@ import { Grid } from "@mui/material";
 let combos = [{ id: 0, bebida: "Coca-Cola", pizza_1: "Calabresa", pizza_2: "Mineira", preco: 60.00}]
 consultarCombos().then(res => {
   combos = res;
-  console.log(combos);
 });
 
 export const MenuCombo = () => {
@@ -35,9 +34,8 @@ export const MenuCombo = () => {
 
   function adicionarNoCarrinho(item) {
     if(userCredenciais.user.email) {
-      let novoItem = {nome: item.bebida + "+" + item.pizza_1 + "+" + item.pizza_2, qt: 1}
+      let novoItem = {nome: item.bebida + "+" + item.pizza_1 + "+" + item.pizza_2, qt: 1, preco: item.preco}
       userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]})
-      console.log(userCredenciais.user)
     }
   }
 
