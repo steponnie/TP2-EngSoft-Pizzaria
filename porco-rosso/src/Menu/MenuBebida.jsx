@@ -31,6 +31,14 @@ export const MenuBebida = () => {
   const userLogado = userCredenciais.user.email ? true : false;
   const nav = useNavigate();
 
+  function adicionarNoCarrinho(item) {
+    if(userCredenciais.user.email) {
+      let novoItem = {nome: item.bebida, qt: 1}
+      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]})
+      console.log(userCredenciais.user)
+    }
+  }
+
 
   return (
     <BackgroundDiv>
@@ -89,7 +97,7 @@ export const MenuBebida = () => {
       <DivOpcoes>
         {bebida.map((item) => {
           return (
-            <OpcaoMenu key={item}>
+            <OpcaoMenu key={item.bebida} onClick={() => {adicionarNoCarrinho(item)}}>
               <OpcaoTitulo>{item.bebida}</OpcaoTitulo>
               <OpcaoTitulo>{"RS " + item.preco}</OpcaoTitulo>
             </OpcaoMenu>

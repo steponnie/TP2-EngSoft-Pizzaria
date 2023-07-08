@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUserInfo] = useState({
     email: "",
     senha: "",
-    carrinho: [{ nome: "Calabresa", qt: 1 }, { nome: "Portuguesa", qt: 1 }],
+    carrinho: [],
   });
   
 

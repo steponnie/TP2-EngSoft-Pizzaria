@@ -31,6 +31,14 @@ export const Menu = () => {
   const userLogado = userCredenciais.user.email ? true : false;
   const nav = useNavigate();
 
+  function adicionarNoCarrinho(item) {
+    if(userCredenciais.user.email) {
+      let novoItem = {nome: item.sabor, qt: 1}
+      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]})
+      console.log(userCredenciais.user)
+    }
+  }
+
   return (
     <BackgroundDiv>
       <DivSuperior>
@@ -91,7 +99,7 @@ export const Menu = () => {
         </OpcaoMenu>
         {pizza.map((item) => {
           return (
-            <OpcaoMenu key={item}>
+            <OpcaoMenu key={item.sabor} onClick={() => {adicionarNoCarrinho(item)}}>
               <OpcaoTitulo>{item.sabor}</OpcaoTitulo>
               <OpcaoTitulo>{"RS " + item.preco}</OpcaoTitulo>
             </OpcaoMenu>

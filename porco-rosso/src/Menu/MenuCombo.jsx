@@ -11,7 +11,7 @@ import {
   DivSuperior,
   DivTitulo,
   OpcaoMenu,
-  OpcaoTitulo,
+  OpcaoTitulo2,
   SubTitulo,
   TextoAzul,
   TextoBranco,
@@ -19,7 +19,7 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
-iimport { consultarCombos} from "../FirebaseUtils/Funcoes.js";
+import { consultarCombos} from "../FirebaseUtils/Funcoes.js";
 import { Grid } from "@mui/material";
 
 let combos = [{ id: 0, bebida: "Coca-Cola", pizza_1: "Calabresa", pizza_2: "Mineira", preco: 60.00}]
@@ -32,6 +32,14 @@ export const MenuCombo = () => {
   const userCredenciais = useContext(AuthContext);
   const userLogado = userCredenciais.user.email ? true : false;
   const nav = useNavigate();
+
+  function adicionarNoCarrinho(item) {
+    if(userCredenciais.user.email) {
+      let novoItem = {nome: item.bebida + "+" + item.pizza_1 + "+" + item.pizza_2, qt: 1}
+      userCredenciais.setUserInfo({...userCredenciais.user, carrinho: [...userCredenciais.user.carrinho, novoItem]})
+      console.log(userCredenciais.user)
+    }
+  }
 
   return (
     <BackgroundDiv>
@@ -88,12 +96,9 @@ export const MenuCombo = () => {
         </DivMenuEscolha>
       </DivMenus>
       <DivOpcoes>
-        <OpcaoMenu>
-          <OpcaoTitulo>{"Montar pizza"} </OpcaoTitulo>
-        </OpcaoMenu>
         {combos.map((item) => {
           return (
-            <OpcaoMenu key={item}>
+            <OpcaoMenu key={item.pizza_1 + item.pizza_2} onClick={() => adicionarNoCarrinho(item)}>
               <Grid>
                 <OpcaoTitulo2>{item.bebida + " + "}</OpcaoTitulo2>
                 <OpcaoTitulo2>{"Pizza " + item.pizza_1 + " + "}</OpcaoTitulo2>

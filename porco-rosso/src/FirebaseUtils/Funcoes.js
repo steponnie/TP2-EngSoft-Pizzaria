@@ -89,3 +89,21 @@ export async function consultarBebida() {
     console.log("Error getting cached document:", e);
   }
 }
+
+export async function consultarCombos() {
+  try {
+    let combos = [];
+    const querySnapschot = await getDocs(collection(db, "combos"));
+    querySnapschot.forEach((doc) => {
+      combos.push({
+        preco: doc.data()["preco"],
+        pizza_1: doc.data()["pizza_1"],
+        pizza_2: doc.data()["pizza_2"],
+        bebida: doc.data()["bebida"],
+      });
+    });
+    return combos;
+  } catch (e) {
+    console.log("Error getting cached document:", e);
+  }
+}
