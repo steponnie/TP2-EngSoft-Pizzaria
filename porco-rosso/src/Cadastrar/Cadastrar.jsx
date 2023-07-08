@@ -17,10 +17,19 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
+import { cadastrarPessoa, consultarBairros, consultarPessoa } from "../FirebaseUtils/Funcoes.js";
+
+let bairros = [{ id: 1, nome: "Anchieta" }]
+consultarBairros().then(res => {bairros = res})
+
+let pessoas = [{ id: 1, nome: "Anchieta" }]
+consultarPessoa().then(res => {pessoas = res})
+console.log(pessoas)
 
 export const Cadastrar = () => {
   const [usuario, setUsuario] = useState({
     nome: "",
+    cpf: "",
     dataNascimento: "",
     telefone: "",
     email: "",
@@ -31,10 +40,13 @@ export const Cadastrar = () => {
     cep: "",
     complemento: "",
   });
+  
+  
 
   function fazerCadastro() {
     if (
       usuario.nome !== "" &&
+      usuario.cpf !== "" &&
       usuario.dataNascimento !== "" &&
       usuario.telefone !== "" &&
       usuario.email !== "" &&
@@ -44,6 +56,18 @@ export const Cadastrar = () => {
       usuario.numero !== "" &&
       usuario.cep !== ""
     ) {
+      cadastrarPessoa(usuario);
+      setUsuario({nome: "",
+      cpf: "",
+      dataNascimento: "",
+      telefone: "",
+      email: "",
+      senha: "",
+      rua: "",
+      bairro: "",
+      numero: "",
+      cep: "",
+      complemento: ""});
       console.log("Cadastro feito");
     }
   }
@@ -139,7 +163,14 @@ export const Cadastrar = () => {
               setUsuario({ ...usuario, bairro: e.target.value });
             }}
           >
-            <Item value={10}> 10 </Item>
+            {bairros.map((item) => {
+              return (
+                <Item key={item.id} value={item.nome}>
+                  {" "}
+                  {item.nome}{" "}
+                </Item>
+              );
+            })}
           </Selecao>
           <TextoEmCimaCaixas>{"CEP *"}</TextoEmCimaCaixas>
           <Caixa

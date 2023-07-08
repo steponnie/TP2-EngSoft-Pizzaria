@@ -1,4 +1,5 @@
-import { React, useState, useContext } from "react";
+import { React, useState, useContext, useEffect } from "react";
+import api from "../Services/api.js";
 import AuthContext from "../Context/Auth.jsx";
 import {
   BackgroundDiv,
@@ -26,6 +27,18 @@ export const Menu = () => {
   const [exibicaoPizza, setExibizacaoPizza] = useState(true);
   const [exibicaoBebida, setExibizacaoBebida] = useState(false);
   const [exibicaoCombo, setExibizacaoCombo] = useState(false);
+
+  const [pizza, setPizza] = useState([]);
+
+  function Login() {
+    const getData = async () => {
+      const data = await api.get("/menuPizza");
+      setPizza(data);
+      console.log(data)
+    };
+    getData();
+    console.log(pizza);
+  }
 
   return (
     <BackgroundDiv>
@@ -68,6 +81,7 @@ export const Menu = () => {
             setExibizacaoPizza(true);
             setExibizacaoBebida(false);
             setExibizacaoCombo(false);
+            Login();
           }}
         >
           {"Pizza"}

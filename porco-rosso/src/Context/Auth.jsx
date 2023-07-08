@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     senha: "",
     carrinho: [{ nome: "Calabresa", qt: 1 }, { nome: "Portuguesa", qt: 1 }],
   });
+  
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
