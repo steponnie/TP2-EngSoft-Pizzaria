@@ -19,11 +19,13 @@ import {
   TiraAzul,
   Titulo,
 } from "./estilos.js";
-import { consultarPizza } from "../FirebaseUtils/Funcoes.js";
+iimport { consultarCombos} from "../FirebaseUtils/Funcoes.js";
+import { Grid } from "@mui/material";
 
-let pizza = [];
-consultarPizza().then((res) => {
-  pizza = res;
+let combos = [{ id: 0, bebida: "Coca-Cola", pizza_1: "Calabresa", pizza_2: "Mineira", preco: 60.00}]
+consultarCombos().then(res => {
+  combos = res;
+  console.log(combos);
 });
 
 export const MenuCombo = () => {
@@ -89,11 +91,16 @@ export const MenuCombo = () => {
         <OpcaoMenu>
           <OpcaoTitulo>{"Montar pizza"} </OpcaoTitulo>
         </OpcaoMenu>
-        {pizza.map((item) => {
+        {combos.map((item) => {
           return (
             <OpcaoMenu key={item}>
-              <OpcaoTitulo>{item.sabor}</OpcaoTitulo>
-              <OpcaoTitulo>{"RS " + item.preco}</OpcaoTitulo>
+              <Grid>
+                <OpcaoTitulo2>{item.bebida + " + "}</OpcaoTitulo2>
+                <OpcaoTitulo2>{"Pizza " + item.pizza_1 + " + "}</OpcaoTitulo2>
+                <OpcaoTitulo2>{"Pizza " + item.pizza_2}</OpcaoTitulo2>
+                <OpcaoTitulo2>{"RS " + item.preco}</OpcaoTitulo2>
+              </Grid>
+              
             </OpcaoMenu>
           );
         })}
