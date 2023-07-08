@@ -1,4 +1,6 @@
-import { React, useEffect, useState } from "react";
+import { React, useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
+import AuthContext from "../Context/Auth.jsx";
 import {
   BackgroundDiv,
   Botao,
@@ -17,14 +19,19 @@ import {
   TextoRosaBranco,
   TiraAzul,
   Titulo,
-} from "./index.js";
+} from "./estilos.js";
 
-const Login = () => {
-  const [usuario, setUsuario] = useState({ email: "", senha: "" });
+export const Login = () => {
+  const userCredenciais = useContext(AuthContext);
+  const [user, setUser] = useState(userCredenciais.user);
 
-  useEffect(() => {
-    console.log(usuario);
-  }, [usuario]);
+  function fazerLogin() {
+    userCredenciais.setUser(user);
+  }
+
+  if(userCredenciais.user.email) {
+    return <Navigate replace to="/Menu/Menu" />;
+  }
 
   return (
     <BackgroundDiv>
@@ -37,7 +44,9 @@ const Login = () => {
         </DivTitulo>
       </DivSuperior>
       <TiraAzul>
-        <TextoBranco>{"menu"}</TextoBranco>
+        <DivNavLink to="/Menu/Menu">
+          <TextoBranco>{"menu"}</TextoBranco>
+        </DivNavLink>
         <DivNavLink to="/SobreNos/SobreNos">
           <TextoBranco>{"sobre nós"}</TextoBranco>
         </DivNavLink>
@@ -51,21 +60,23 @@ const Login = () => {
           <TextoRosaBranco>{"Email"}</TextoRosaBranco>
           <Caixa
             placeholder="Insira seu email aqui..."
-            value={usuario.email}
+            value={user.email}
             onChange={(e) => {
-              setUsuario({ ...usuario, email: e.target.value });
+              setUser({ ...user, email: e.target.value });
             }}
           />
           <TextoRosaBranco>{"Senha"}</TextoRosaBranco>
           <Caixa
             placeholder="Insira sua senha..."
             type="password"
-            value={usuario.senha}
+            value={user.senha}
             onChange={(e) => {
-              setUsuario({ ...usuario, senha: e.target.value });
+              setUser({ ...user, senha: e.target.value });
             }}
           />
-          <Botao variant="contained">{"Entrar"}</Botao>
+          <Botao variant="contained" onClick={() => {fazerLogin()}}>
+            {"Entrar"}
+          </Botao>
           <DivNavLink to="/Cadastrar/Cadastrar">
             <TextoAzul>{"Criar uma conta"}</TextoAzul>
           </DivNavLink>
@@ -74,5 +85,3 @@ const Login = () => {
     </BackgroundDiv>
   );
 };
-
-export { Login };

@@ -1,4 +1,5 @@
-import { React } from "react";
+import { React, useContext } from "react";
+import AuthContext from "../Context/Auth.jsx";
 import {
   BackgroundDiv,
   DivLogin,
@@ -13,9 +14,12 @@ import {
   TextoRosa,
   TiraAzul,
   Titulo,
-} from "./index.js";
+} from "./estilos.js";
 
-const SobreNos = () => {
+export const SobreNos = () => {
+  const userCredenciais = useContext(AuthContext);
+  const userLogado = userCredenciais.user.email ? true : false;
+
   return (
     <BackgroundDiv>
       <DivSuperior>
@@ -27,20 +31,26 @@ const SobreNos = () => {
           <SubTitulo>{"Pizzaria"}</SubTitulo>
         </DivTitulo>
         <DivLogin>
-          <DivNavLink
-            to="/Login/Login"
-            >
-            <TextoAzul>{"Entrar"}</TextoAzul>
-          </DivNavLink>
-          <DivNavLink
-            to="/Cadastrar/Cadastrar"
-            >
-            <TextoAzul>{"Cadastrar"}</TextoAzul>
-          </DivNavLink>
+          {!userLogado ? (
+            <>
+              <DivNavLink to="/Login/Login">
+                <TextoAzul>{"Entrar"}</TextoAzul>
+              </DivNavLink>
+              <DivNavLink to="/Cadastrar/Cadastrar">
+                <TextoAzul>{"Cadastrar"}</TextoAzul>
+              </DivNavLink>
+            </>
+          ) : (
+            <DivNavLink to="/Carrinho/Carrinho">
+              <TextoAzul>{"Ver carrinho"}</TextoAzul>
+            </DivNavLink>
+          )}
         </DivLogin>
       </DivSuperior>
       <TiraAzul>
-        <TextoBranco>{"menu"}</TextoBranco>
+        <DivNavLink to="/Menu/Menu">
+          <TextoBranco>{"menu"}</TextoBranco>
+        </DivNavLink>
         <DivNavLink
           to="/SobreNos/SobreNos">
           <TextoRosa>
@@ -59,5 +69,3 @@ const SobreNos = () => {
     </BackgroundDiv>
   );
 };
-
-export { SobreNos };

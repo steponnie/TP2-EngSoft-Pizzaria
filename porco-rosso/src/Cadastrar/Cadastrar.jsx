@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import {
   BackgroundDiv,
   Botao,
@@ -16,9 +16,9 @@ import {
   TextoEmCimaCaixas,
   TiraAzul,
   Titulo,
-} from "./index.js";
+} from "./estilos.js";
 
-const Cadastrar = () => {
+export const Cadastrar = () => {
   const [usuario, setUsuario] = useState({
     nome: "",
     dataNascimento: "",
@@ -31,10 +31,6 @@ const Cadastrar = () => {
     cep: "",
     complemento: "",
   });
-
-  useEffect(() => {
-    console.log(usuario);
-  }, [usuario]);
 
   function fazerCadastro() {
     if (
@@ -63,7 +59,9 @@ const Cadastrar = () => {
         </DivTitulo>
       </DivSuperior>
       <TiraAzul>
-        <TextoBranco>{"menu"}</TextoBranco>
+        <DivNavLink to="/Menu/Menu">
+          <TextoBranco>{"menu"}</TextoBranco>
+        </DivNavLink>
         <DivNavLink to="/SobreNos/SobreNos">
           <TextoBranco>{"sobre nós"}</TextoBranco>
         </DivNavLink>
@@ -172,5 +170,3 @@ const Cadastrar = () => {
     </BackgroundDiv>
   );
 };
-
-export { Cadastrar };

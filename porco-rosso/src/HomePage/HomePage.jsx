@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useContext } from "react";
 import {
   BackgroundDiv,
   DivCitacao,
@@ -14,40 +14,47 @@ import {
   TextoFrase,
   TiraAzul,
   Titulo,
-} from "./index.js";
+} from "./estilos.js";
 import { PorcoRossoComendoSVG, PorcoRossoAviaoSVG } from "../imgs/index.jsx";
+import AuthContext from "../Context/Auth.jsx";
 
-const HomePage = () => {
+export const HomePage = () => {
+  const userCredenciais = useContext(AuthContext);
+
+  const userLogado = userCredenciais.user.email ? true : false;
+
   return (
     <BackgroundDiv>
       <DivSuperior>
         <DivTitulo>
-          <DivNavLink
-            to="/">
-          <Titulo>{"Porco Rosso"}</Titulo>
+          <DivNavLink to="/">
+            <Titulo>{"Porco Rosso"}</Titulo>
           </DivNavLink>
           <SubTitulo>{"Pizzaria"}</SubTitulo>
         </DivTitulo>
         <DivLogin>
-          <DivNavLink
-            to="/Login/Login"
-            >
-            <TextoAzul>{"Entrar"}</TextoAzul>
-          </DivNavLink>
-          <DivNavLink
-            to="/Cadastrar/Cadastrar"
-            >
-            <TextoAzul>{"Cadastrar"}</TextoAzul>
-          </DivNavLink>
+          {!userLogado ? (
+            <>
+              <DivNavLink to="/Login/Login">
+                <TextoAzul>{"Entrar"}</TextoAzul>
+              </DivNavLink>
+              <DivNavLink to="/Cadastrar/Cadastrar">
+                <TextoAzul>{"Cadastrar"}</TextoAzul>
+              </DivNavLink>
+            </>
+          ) : (
+            <DivNavLink to="/Carrinho/Carrinho">
+              <TextoAzul>{"Ver carrinho"}</TextoAzul>
+            </DivNavLink>
+          )}
         </DivLogin>
       </DivSuperior>
       <TiraAzul>
-        <TextoBranco>{"menu"}</TextoBranco>
-        <DivNavLink
-          to="/SobreNos/SobreNos">
-          <TextoBranco>
-            {"sobre nós"}
-          </TextoBranco>
+        <DivNavLink to="/Menu/Menu">
+          <TextoBranco>{"menu"}</TextoBranco>
+        </DivNavLink>
+        <DivNavLink to="/SobreNos/SobreNos">
+          <TextoBranco>{"sobre nós"}</TextoBranco>
         </DivNavLink>
       </TiraAzul>
       <DivMeioTela>
@@ -65,5 +72,3 @@ const HomePage = () => {
     </BackgroundDiv>
   );
 };
-
-export { HomePage };
