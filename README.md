@@ -1,11 +1,11 @@
 # TP2-EngSoft-Pizzaria
 
-## Integrantes
-
-LUÍSA OLIVEIRA VICENTE				20203007951
-STÉPHANIE FONSECA DE OLIVEIRA GOMES MAGALHÃES	20203001401
-EDUARDO GOMES DE FREITAS 			20203002249
-LEONARDO GONCALVES GROSSI 			20203003854
+## Disciplina: Engenharia de Software
+## Alunos: 
+           * Stéphanie Fonseca de Oliveira Gomes Magalhães            20203001401
+           * Luísa Oliveira Vicente                                   20203007951
+           * Eduardo Gomes de Freitas                                 20203002249
+           * Leonardo Gonçalves Grossi                                20203003854
 
 # Trabalho de Engenharia de Software - Backend com Firebase e Frontend com React
 Este é o README para um projeto de engenharia de software que utiliza o Firebase como banco de dados para o backend e o React com JavaScript para o frontend.
