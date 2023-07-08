@@ -6,6 +6,11 @@
            * Luísa Oliveira Vicente                                   20203007951
            * Eduardo Gomes de Freitas                                 20203002249
            * Leonardo Gonçalves Grossi                                20203003854
+           
+
+### Link para o vídeo de apresentação da Aplicação:
+https://youtu.be/iggiFzU4nuI
+
 
 # Trabalho de Engenharia de Software - Backend com Firebase e Frontend com React
 Este é o README para um projeto de engenharia de software que utiliza o Firebase como banco de dados para o backend e o React com JavaScript para o frontend.
