@@ -178,3 +178,12 @@ export const OpcaoTitulo = styled.h2`
   font-weight: bold;
   line-height: normal;
 `;
+
+export const OpcaoTitulo2 = styled.h2`
+  color: #f8d0ab;
+  font-size: 24px;
+  font-family: Titan One;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+`;
