@@ -1,5 +1,12 @@
 # TP2-EngSoft-Pizzaria
 
+## Integrantes
+
+LUÍSA OLIVEIRA VICENTE				20203007951
+STÉPHANIE FONSECA DE OLIVEIRA GOMES MAGALHÃES	20203001401
+EDUARDO GOMES DE FREITAS 			20203002249
+LEONARDO GONCALVES GROSSI 			20203003854
+
 # Trabalho de Engenharia de Software - Backend com Firebase e Frontend com React
 Este é o README para um projeto de engenharia de software que utiliza o Firebase como banco de dados para o backend e o React com JavaScript para o frontend.
 
@@ -42,4 +49,11 @@ Clone o repositório do projeto em sua máquina local utilizando o Git
 Instale as dependências do frontend utilizando o npm (Node Package Manager):
 
 ```npm install```
-```npm install -g firebase-tools```
+
+```npm install eslint```
+
+```npm install styled-components```
+
+```npm install @mui/material @emotion/react @emotion/styled```
+
+```npm install firebase```
