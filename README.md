@@ -42,3 +42,4 @@ Clone o repositório do projeto em sua máquina local utilizando o Git
 Instale as dependências do frontend utilizando o npm (Node Package Manager):
 
 ```npm install```
+```npm install -g firebase-tools```
